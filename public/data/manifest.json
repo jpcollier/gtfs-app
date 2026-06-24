@@ -13,6 +13,13 @@
       "city": "Los Angeles",
       "file": "data/la_metro_rail.json",
       "service_date": "20260624"
+    },
+    {
+      "id": "mta_nyct",
+      "name": "MTA New York City Transit Subway",
+      "city": "New York",
+      "file": "data/mta_nyct.json",
+      "service_date": "20260624"
     }
   ]
 }
