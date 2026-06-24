@@ -13,6 +13,8 @@ import argparse
 import csv
 import json
 import math
+import shutil
+import ssl
 import urllib.request
 import zipfile
 from collections import defaultdict
@@ -117,14 +119,23 @@ def active_services(calendar_rows: List[dict], exception_rows: List[dict], servi
     return active
 
 
-def download_if_needed(agency: dict, cache_dir: Path) -> Path:
+def download_if_needed(agency: dict, cache_dir: Path, *, verify_ssl: bool = True) -> Path:
     if agency.get("local_zip"):
         return (ROOT / agency["local_zip"]).resolve()
     cache_dir.mkdir(parents=True, exist_ok=True)
     target = cache_dir / f"{agency['id']}.zip"
     if not target.exists():
         print(f"Downloading {agency['name']} -> {target}")
-        urllib.request.urlretrieve(agency["feed_url"], target)
+        request = urllib.request.Request(
+            agency["feed_url"],
+            headers={
+                # Some GTFS hosts reject Python's default urllib user agent with HTTP 403.
+                "User-Agent": "Mozilla/5.0 (compatible; gtfs-app-preprocessor/1.0)",
+            },
+        )
+        context = None if verify_ssl else ssl._create_unverified_context()
+        with urllib.request.urlopen(request, context=context) as response, target.open("wb") as fh:
+            shutil.copyfileobj(response, fh)
     return target
 
 
@@ -224,11 +235,16 @@ def main() -> None:
     parser.add_argument("--output", default="public/data")
     parser.add_argument("--cache", default="data/feeds")
     parser.add_argument("--limit", type=int, default=None, help="Override trips sampled per agency")
+    parser.add_argument(
+        "--insecure",
+        action="store_true",
+        help="Disable SSL certificate verification when downloading GTFS feeds (similar to requests verify=False)",
+    )
     args = parser.parse_args()
     cfg = json.loads((ROOT / args.config).read_text())
     manifest = []
     for agency in cfg["agencies"]:
-        zip_path = download_if_needed(agency, ROOT / args.cache)
+        zip_path = download_if_needed(agency, ROOT / args.cache, verify_ssl=not args.insecure)
         manifest.append(process_agency(agency, zip_path, ROOT / args.output, args.limit or cfg.get("sample_limit_trips_per_agency", 1200)))
     (ROOT / args.output / "manifest.json").write_text(json.dumps({"agencies": manifest}, indent=2))
     print(f"Wrote {len(manifest)} agencies to {args.output}")
