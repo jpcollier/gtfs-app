@@ -52,6 +52,14 @@ Process a smaller sample while iterating:
 python scripts/preprocess_gtfs.py --limit 300
 ```
 
+If a feed host rejects the default downloader or has certificate issues, the
+preprocessor sends a browser-like user agent and also supports an SSL
+verification bypass similar to `requests` `verify=False`:
+
+```bash
+python scripts/preprocess_gtfs.py --insecure
+```
+
 To use local GTFS zips instead of URLs, add `local_zip` to an agency entry in `config/agencies.json`, for example:
 
 ```json
