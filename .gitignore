@@ -1,0 +1,7 @@
+node_modules/
+dist/
+data/feeds/*.zip
+.DS_Store
+
+__pycache__/
+*.py[cod]

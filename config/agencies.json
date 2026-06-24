@@ -1,0 +1,16 @@
+{
+  "description": "Configurable list of large U.S. transit agencies. Replace feed_url values or set local_zip for reproducible local processing.",
+  "sample_limit_trips_per_agency": 1200,
+  "agencies": [
+    { "id": "mta_nyct", "name": "MTA New York City Transit", "city": "New York", "feed_url": "https://rrgtfsfeeds.s3.amazonaws.com/gtfs_mta_subway.zip" },
+    { "id": "cta", "name": "Chicago Transit Authority", "city": "Chicago", "feed_url": "https://www.transitchicago.com/downloads/sch_data/google_transit.zip" },
+    { "id": "la_metro", "name": "LA Metro", "city": "Los Angeles", "feed_url": "https://gitlab.com/LACMTA/gtfs_bus/-/raw/master/gtfs_bus.zip" },
+    { "id": "mbta", "name": "MBTA", "city": "Boston", "feed_url": "https://cdn.mbta.com/MBTA_GTFS.zip" },
+    { "id": "wmata", "name": "WMATA", "city": "Washington, DC", "feed_url": "https://api.wmata.com/gtfs/bus-gtfs-static.zip" },
+    { "id": "septa", "name": "SEPTA", "city": "Philadelphia", "feed_url": "https://www3.septa.org/developer/google_bus.zip" },
+    { "id": "sfmta", "name": "SFMTA Muni", "city": "San Francisco", "feed_url": "https://gtfs.sfmta.com/transitdata/google_transit.zip" },
+    { "id": "nj_transit", "name": "NJ TRANSIT", "city": "New Jersey", "feed_url": "https://www.njtransit.com/bus_data.zip" },
+    { "id": "king_county_metro", "name": "King County Metro", "city": "Seattle", "feed_url": "https://metro.kingcounty.gov/GTFS/google_transit.zip" },
+    { "id": "marta", "name": "MARTA", "city": "Atlanta", "feed_url": "https://www.itsmarta.com/google_transit_feed/google_transit.zip" }
+  ]
+}
