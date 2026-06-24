@@ -7,7 +7,6 @@ A lightweight local web app for visualizing one representative day of scheduled 
 ```text
 config/agencies.json          # configurable top-agency list and GTFS feed URLs/local zip paths
 scripts/preprocess_gtfs.py    # standard-library GTFS zip parser and animation JSON exporter
-scripts/create_sample_data.py # tiny synthetic processed dataset for first-run demo
 public/data/                  # browser-ready manifest and per-agency JSON files
 src/main.jsx                  # React + D3 animation and small-multiple panels
 src/styles.css                # minimal visual design
@@ -28,9 +27,9 @@ The browser never parses raw GTFS. The preprocessing step reads each feed, choos
 npm install
 ```
 
-## Run with included sample data
+## Run with included processed data
 
-The repository includes generated synthetic processed JSON so the app works immediately without large downloads.
+The repository includes browser-ready processed JSON built from official LA Metro GTFS bus and rail feeds, so the app works immediately without synthetic data.
 
 ```bash
 npm run dev
@@ -40,13 +39,13 @@ Open the Vite URL printed in the terminal.
 
 ## Process real GTFS feeds
 
-Download/process all configured agencies:
+Download/process configured agencies:
 
 ```bash
 python scripts/preprocess_gtfs.py --config config/agencies.json --output public/data --cache data/feeds
 ```
 
-Process a smaller sample while iterating:
+Process fewer trips while iterating:
 
 ```bash
 python scripts/preprocess_gtfs.py --limit 300

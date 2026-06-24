@@ -1,32 +1,18 @@
 {
   "agencies": [
     {
-      "id": "nyc_sample",
-      "name": "MTA New York City Transit",
-      "city": "New York",
-      "file": "data/nyc_sample.json",
-      "service_date": "2026-06-24"
-    },
-    {
-      "id": "cta_sample",
-      "name": "Chicago Transit Authority",
-      "city": "Chicago",
-      "file": "data/cta_sample.json",
-      "service_date": "2026-06-24"
-    },
-    {
-      "id": "la_sample",
-      "name": "LA Metro",
+      "id": "la_metro",
+      "name": "LA Metro Bus",
       "city": "Los Angeles",
-      "file": "data/la_sample.json",
-      "service_date": "2026-06-24"
+      "file": "data/la_metro.json",
+      "service_date": "20261208"
     },
     {
-      "id": "mbta_sample",
-      "name": "MBTA",
-      "city": "Boston",
-      "file": "data/mbta_sample.json",
-      "service_date": "2026-06-24"
+      "id": "la_metro_rail",
+      "name": "LA Metro Rail",
+      "city": "Los Angeles",
+      "file": "data/la_metro_rail.json",
+      "service_date": "20260624"
     }
   ]
 }
