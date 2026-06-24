@@ -110,7 +110,7 @@ function App() {
       <p>No basemap: just scheduled vehicles moving over static route geometry in small multiples.</p>
     </section>
     {error && <p className="error">Could not load processed data: {error}</p>}
-    {!error && agencies.length === 0 && <p className="loading">Loading sample agencies…</p>}
+    {!error && agencies.length === 0 && <p className="loading">Loading processed GTFS datasets…</p>}
     <section className="grid">
       {agencies.map((agency) => <AgencyPanel key={agency.id} agency={agency} seconds={seconds} />)}
     </section>
