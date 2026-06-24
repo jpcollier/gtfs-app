@@ -1,6 +1,6 @@
 # GTFS Representative Day Small Multiples
 
-A lightweight local web app for visualizing one representative day of scheduled transit service from static GTFS feeds. Each agency is rendered as a small multiple with no basemap: thin route shapes and animated vehicle-like dots interpolated from scheduled `stop_times.txt`.
+A lightweight local web app for visualizing one representative day of scheduled transit service from static GTFS feeds. Each city is rendered as one combined map with no basemap: thin route shapes and animated vehicle-like dots interpolated from scheduled `stop_times.txt`.
 
 ## Proposed architecture
 
@@ -8,7 +8,7 @@ A lightweight local web app for visualizing one representative day of scheduled 
 config/agencies.json          # configurable top-agency list and GTFS feed URLs/local zip paths
 scripts/preprocess_gtfs.py    # standard-library GTFS zip parser and animation JSON exporter
 public/data/                  # browser-ready manifest and per-agency JSON files
-src/main.jsx                  # React + D3 animation and small-multiple panels
+src/main.jsx                  # React + D3 animation and combined city map panels
 src/styles.css                # minimal visual design
 ```
 
@@ -29,7 +29,7 @@ npm install
 
 ## Run with included processed data
 
-The repository includes browser-ready processed JSON built from official LA Metro GTFS bus and rail feeds, so the app works immediately without synthetic data.
+The repository includes browser-ready processed JSON for LA Metro bus, LA Metro rail, and a compact NYC subway dataset so the app works immediately with more than one city.
 
 ```bash
 npm run dev
